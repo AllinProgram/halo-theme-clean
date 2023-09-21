@@ -1,17 +1,17 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-foo
+  name: theme-clean
 spec:
-  displayName: 示例主题
+  displayName: clean
   author:
-    name: halo-dev
-    website: https://halo.run
-  description: 一个示例主题
+    name: AllinProgram
+    website: https://allinprogram.com
+  description: A halo theme called clean is built with pure HTML, CSS and JS.
   logo: https://halo.run/logo
-  website: https://github.com/halo-sigs/theme-foo
-  repo: https://github.com/halo-sigs/theme-foo.git
-  settingName: "theme-foo-setting"
-  configMapName: "theme-foo-configMap"
+  website: https://github.com/allinprogram/halo-theme-clean
+  repo: https://github.com/allinprogram/halo-theme-clean
+  settingName: "theme-clean-setting"
+  configMapName: "theme-clean-configMap"
   version: 1.0.0
   require: 2.0.0
