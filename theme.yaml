@@ -1,7 +1,7 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-clean
+  name: halo-theme-clean
 spec:
   displayName: clean
   author:
@@ -15,3 +15,10 @@ spec:
   configMapName: "theme-clean-configMap"
   version: 1.0.0
   require: 2.0.0
+
+  customTemplates:
+    page:
+      - name: fragments
+        description: fragments
+        screenshot: 
+        file: fragments.html

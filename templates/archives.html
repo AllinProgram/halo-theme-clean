@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${site.title}"></title>
+
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
+</head>
+
+<body>
+    <header th:replace="fragments :: header"></header>
+
+    <div class="main">
+        <th:block th:each="archive : ${archives.items}">
+            <h1 th:text="${archive.year}"></h1>
+            <ul>
+                <th:block th:each="month : ${archive.months}">
+                    <li th:each="post : ${month.posts}">
+                        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
+                        </a>
+                    </li>
+                </th:block>
+            </ul>
+        </th:block>
+        <div th:if="${archives.hasPrevious() || archives.hasNext()}">
+            <a th:href="@{${archives.prevUrl}}">
+                <span>上一页</span>
+            </a>
+            <span th:text="${archives.page} +' / '+ ${archives.total}"></span>
+            <a th:href="@{${archives.nextUrl}}">
+                <span>下一页</span>
+            </a>
+        </div>
+    </div>
+
+    <footer th:replace="fragments :: footer"></footer>
+
+</body>
+
+</html>
