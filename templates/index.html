@@ -12,30 +12,13 @@
 </head>
 
 <body>
-    <header th:replace="fragments :: header"></header>
+    <header th:replace="~{fragments :: header}"></header>
 
     <div class="main">
-
-        <div>
-            <ul>
-                <li th:each="post : ${posts.items}">
-                    <a th:text="${post.spec.title}" th:href="${post.status.permalink}"></a>
-                </li>
-            </ul>
-            <div th:if="${posts.hasPrevious() || posts.hasNext()}">
-                <a th:href="@{${posts.prevUrl}}">
-                    <span>上一页</span>
-                </a>
-                <span th:text="${posts.page} +' / '+ ${posts.total}"></span>
-                <a th:href="@{${posts.nextUrl}}">
-                    <span>下一页</span>
-                </a>
-            </div>
-        </div>
-
+    
     </div>
 
-    <footer th:replace="fragments :: footer"></footer>
+    <footer th:replace="~{fragments :: footer}"></footer>
 
 </body>
 

@@ -5,18 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${site.title}"></title>
+    <title th:text="${'归档 ｜ ' + site.title}"></title>
 
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
 </head>
 
 <body>
-    <header th:replace="fragments :: header"></header>
+    <header th:replace="~{fragments :: header}"></header>
 
     <div class="main">
+        <h1>归档</h1>
         <th:block th:each="archive : ${archives.items}">
-            <h1 th:text="${archive.year}"></h1>
+            <h2 th:text="${archive.year}"></h2>
             <ul>
                 <th:block th:each="month : ${archive.months}">
                     <li th:each="post : ${month.posts}">
@@ -37,7 +38,7 @@
         </div>
     </div>
 
-    <footer th:replace="fragments :: footer"></footer>
+    <footer th:replace="~{fragments :: footer}"></footer>
 
 </body>
 

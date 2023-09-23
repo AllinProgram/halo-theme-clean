@@ -7,16 +7,19 @@
         <div th:if="${#strings.contains(site.title,' ')}">
             <h3 onclick="window.location.href='/'">
                 <span th:text="${#strings.substring(site.title, 0, #strings.indexOf(site.title,' '))}"></span>
-                <span th:text="${#strings.substring(site.title, #strings.indexOf(site.title,' '), #strings.length(site.title))}" class="avHub-hub"></span>
+                <span
+                    th:text="${#strings.substring(site.title, #strings.indexOf(site.title,' '), #strings.length(site.title))}"
+                    class="avHub-hub"></span>
             </h3>
         </div>
 
         <div class="header-menu">
-            <a href="/">关于</a>
+            <a th:each="menuItem : ${menuFinder.getPrimary().menuItems}" th:text="${menuItem.status.displayName}"
+                th:href=" @{${menuItem.status.href}}"></a>
         </div>
     </header>
     <header class="header-2st">
-        <h3 onclick="location.reload(true);" th:text="${site.subtitle}"></h3>
+        <h4 onclick="location.reload(true);" th:text="${site.subtitle}"></h4>
         <div class="header-menu header-menu-scroll">
             <a href="/archives" style="writing-mode: vertical-lr">归档</a>
             <a href="/categories" style="writing-mode: vertical-lr">分类</a>
