@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${singlePage.spec.title + ' | ' +site.title}"></title>
+
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
+</head>
+
+<body>
+    <header th:replace="~{fragments :: header}"></header>
+
+    <div class="main">
+        <article>
+            <h1 th:text="${singlePage.spec.title}"></h1>
+            <div th:utext="${singlePage.content.content}"> </div>
+        </article>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+
+</html>
