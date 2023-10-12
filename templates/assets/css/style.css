@@ -11,7 +11,7 @@ header {
     justify-content: space-between;
     align-items: center;
     /*占页高6%*/
-    height: 6vh;
+    height: 5vh;
 }
 
 .header-1st {
@@ -20,18 +20,18 @@ header {
 }
 
 .header-2st {
-    min-height: 6vh;
+    min-height: 5vh;
 }
 
 .main {
     /*指定高度后需要设置overflow才能生效*/
-    height: calc(82vh);
+    height: calc(84vh);
     overflow: auto;
 }
 
 footer {
     border-top: 1px solid #ccc;
-    height: 6vh;
+    height: 5vh;
     text-align: center;
 }
 
