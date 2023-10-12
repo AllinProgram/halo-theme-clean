@@ -19,17 +19,13 @@ header {
     top: 0;
     width: 768px;
     backdrop-filter: blur(4px);
-}
-
-.header-1st {
-    /* 下边框 */
-    border-bottom: 1px solid #ccc;
+    border-radius: 0 0 15px 15px;
 }
 
 .main {
     /* 指定高度后需要设置overflow才能生效 */
     /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
-    margin-top: 11vh;
+    margin: 11vh 10px;
     min-height: calc(89vh);
     overflow: auto;
 }

@@ -1,6 +1,6 @@
 <div th:fragment="header(pageTitle)">
     <div class="float-top">
-        <header class="header-1st">
+        <header style="border-bottom: 1px solid #ccc;">
             <div th:if="${!#strings.contains(site.title,' ')}">
                 <h3 onclick="window.location.href='/'" th:text="${site.title}"></h3>
             </div>
@@ -18,7 +18,7 @@
                     th:href=" @{${menuItem.status.href}}"></a>
             </div>
         </header>
-        <header class="header-2st">
+        <header>
             <h4 onclick="location.reload(true);" th:text="${pageTitle}"></h4>
             <div class="header-menu header-menu-scroll">
                 <a href="/archives" style="writing-mode: vertical-lr">归档</a>
