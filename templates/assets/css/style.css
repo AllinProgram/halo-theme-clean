@@ -25,8 +25,8 @@ header {
 .main {
     /* 指定高度后需要设置overflow才能生效 */
     /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
-    margin: 11vh 10px;
-    min-height: calc(89vh);
+    margin: 10vh 10px 0px;
+    min-height: calc(87vh);
     overflow: auto;
 }
 
