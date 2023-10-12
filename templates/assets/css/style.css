@@ -6,32 +6,27 @@ body {
 }
 
 header {
-    /*水平左右分散垂直对齐*/
+    /* 水平左右分散垂直对齐 */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*占页高6%*/
-    height: 6vh;
+    min-height: 5vh;
 }
 
 .header-1st {
-    /*下边框*/
+    /* 下边框 */
     border-bottom: 1px solid #ccc;
 }
 
-.header-2st {
-    min-height: 6vh;
-}
-
 .main {
-    /*指定高度后需要设置overflow才能生效*/
-    height: calc(82vh);
-    overflow: auto;
+    /* 指定高度后需要设置overflow才能生效 */
+    /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
+    min-height: calc(88vh);
+    overflow:auto;
 }
 
 footer {
     border-top: 1px solid #ccc;
-    height: 6vh;
     text-align: center;
 }
 
@@ -69,12 +64,12 @@ a:hover {
 }
 
 .videoItem {
-    /*块内元素水平居中显示*/
+    /* 块内元素水平居中显示 */
     display: flex;
     align-items: center;
-    /*超出宽度开始滑动*/
+    /* 超出宽度开始滑动 */
     max-width: 520px;
-    /*指定宽度后设置margin可居中*/
+    /* 指定宽度后设置margin可居中 */
     margin: 10px auto 5px;
 }
 
