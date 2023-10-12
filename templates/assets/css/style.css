@@ -13,6 +13,14 @@ header {
     min-height: 5vh;
 }
 
+/* 使顶部导航栏固定在顶部 */
+.float-top {
+    position: fixed;
+    top: 0;
+    width: 768px;
+    backdrop-filter: blur(4px);
+}
+
 .header-1st {
     /* 下边框 */
     border-bottom: 1px solid #ccc;
@@ -21,8 +29,9 @@ header {
 .main {
     /* 指定高度后需要设置overflow才能生效 */
     /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
-    min-height: calc(88vh);
-    overflow:auto;
+    margin-top: 11vh;
+    min-height: calc(89vh);
+    overflow: auto;
 }
 
 footer {
