@@ -12,10 +12,9 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header('分类')}"></header>
 
     <div class="main">
-        <h1>分类</h1>
         <ul th:fragment="next (categories)">
             <li th:fragment="single (categories)" th:each="category : ${categories}">
                 <a th:href="@{${category.status.permalink}}">

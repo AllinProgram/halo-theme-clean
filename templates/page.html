@@ -12,11 +12,10 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header(${singlePage.spec.title})}"></header>
 
     <div class="main">
         <article>
-            <h1 th:text="${singlePage.spec.title}"></h1>
             <div th:utext="${singlePage.content.content}"> </div>
         </article>
     </div>

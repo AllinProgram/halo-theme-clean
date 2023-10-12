@@ -1,4 +1,4 @@
-<div th:fragment="header">
+<div th:fragment="header(pageTitle)">
 
     <header class="header-1st">
         <div th:if="${!#strings.contains(site.title,' ')}">
@@ -19,7 +19,7 @@
         </div>
     </header>
     <header class="header-2st">
-        <h4 onclick="location.reload(true);" th:text="${site.subtitle}"></h4>
+        <h4 onclick="location.reload(true);" th:text="${pageTitle}"></h4>
         <div class="header-menu header-menu-scroll">
             <a href="/archives" style="writing-mode: vertical-lr">归档</a>
             <a href="/categories" style="writing-mode: vertical-lr">分类</a>

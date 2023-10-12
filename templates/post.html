@@ -12,13 +12,12 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header(${post.spec.title})}"></header>
 
     <div class="main">
         <article>
-            <!-- <h1 th:text="${post.spec.title}"></h1> -->
             <div th:utext="${post.content.content}"> </div>
-          </article>
+        </article>
     </div>
 
     <footer th:replace="~{fragments :: footer}"></footer>

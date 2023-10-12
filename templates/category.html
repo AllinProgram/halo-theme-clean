@@ -12,11 +12,10 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header(${category.spec.displayName})}"></header>
 
     <div class="main">
         <div>
-            <h1 th:text="${category.spec.displayName}"></h1>
             <ul>
                 <li th:each="post : ${posts.items}">
                     <a th:text="${post.spec.title}" th:href="${post.status.permalink}"></a>

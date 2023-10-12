@@ -12,10 +12,9 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header('标签')}"></header>
 
     <div class="main">
-        <h1>标签</h1>
         <ul>
             <li th:each="tag : ${tags}">
                 <a th:text="${tag.spec.displayName}" th:href="${tag.status.permalink}"></a>

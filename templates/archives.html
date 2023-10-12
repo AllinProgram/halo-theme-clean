@@ -12,10 +12,9 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header('归档')}"></header>
 
     <div class="main">
-        <h1>归档</h1>
         <th:block th:each="archive : ${archives.items}">
             <h2 th:text="${archive.year}"></h2>
             <ul>
