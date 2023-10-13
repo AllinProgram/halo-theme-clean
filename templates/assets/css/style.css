@@ -41,6 +41,7 @@ header {
     width: 100%;
     max-width: 1024px;
     /* 高斯模糊 */
+    background-color: rgb(255 255 255 / 0.3);
     backdrop-filter: blur(4px);
     border-radius: 0 0 15px 15px;
     /* 左右对齐 */
