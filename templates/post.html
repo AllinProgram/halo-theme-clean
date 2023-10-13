@@ -12,9 +12,11 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header(${post.spec.title})}"></header>
+    <header th:replace="~{fragments :: header}"></header>
 
     <div class="main">
+        <header th:replace="~{fragments :: secondMenu(${post.spec.title})}"></header>
+
         <article>
             <div th:utext="${post.content.content}"> </div>
         </article>

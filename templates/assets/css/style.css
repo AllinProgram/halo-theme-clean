@@ -1,36 +1,72 @@
+/* 大屏设备上的导航栏样式 */
+@media only screen and (min-width: 1024px) {
+    header {
+        width: 1024px;
+    }
+}
+
+/* 小屏设备下的媒体查询 */
+@media only screen and (max-width: 768px) {
+
+    /* 隐藏默认菜单 */
+    .menu {
+        display: none;
+    }
+
+    /* 显示抽屉式菜单 */
+    .drawer-menu {
+        display: block;
+    }
+}
+
+/* 抽屉式菜单样式 */
+.drawer-menu {
+    display: none;
+}
+
 body {
     margin: 0 auto;
-    max-width: 768px;
+    max-width: 1024px;
     font-family: 'Noto Serif SC', serif;
     box-sizing: border-box;
 }
 
 header {
-    /* 水平左右分散垂直对齐 */
+    max-height: 5vh;
+    /* 使顶部导航栏固定在顶部并居中 */
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1024px;
+    /* 高斯模糊 */
+    backdrop-filter: blur(4px);
+    border-radius: 0 0 15px 15px;
+    /* 左右对齐 */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 5vh;
+    padding: 0 10px;
 }
 
-/* 使顶部导航栏固定在顶部 */
-.float-top {
-    position: fixed;
-    top: 0;
-    width: 768px;
-    backdrop-filter: blur(4px);
-    border-radius: 0 0 15px 15px;
+/* 左右对齐 */
+.left-right-alignment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
 }
 
 .main {
     /* 指定高度后需要设置overflow才能生效 */
     /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
-    margin: 10vh 10px 0px;
-    min-height: calc(87vh);
-    overflow: auto;
+    margin: 5vh 10px 0px;
+    min-height: 90vh;
 }
 
 footer {
+    max-height: 3vh;
     border-top: 1px solid #ccc;
     text-align: center;
 }
@@ -60,6 +96,7 @@ a:hover {
 
 ::-webkit-scrollbar {
     display: none;
+    background-color: #FF9900;
 }
 
 .avHub-hub {
@@ -68,36 +105,6 @@ a:hover {
     background: #FF9900;
 }
 
-.videoItem {
-    /* 块内元素水平居中显示 */
-    display: flex;
-    align-items: center;
-    /* 超出宽度开始滑动 */
-    max-width: 520px;
-    /* 指定宽度后设置margin可居中 */
-    margin: 10px auto 5px;
-}
-
-.video-img {
-    vertical-align: middle;
-    width: 22vh;
-    margin: 15px;
-}
-
-.video-info {
-    width: 75vh;
-    overflow: auto;
-}
-
 p {
     margin: 1px auto;
-}
-
-#page-turning {
-    text-align: center;
-    margin: 15px auto;
-}
-
-.-webkit-scrollbar {
-    background-color: #FF9900;
 }

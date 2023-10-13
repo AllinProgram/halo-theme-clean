@@ -12,9 +12,11 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header(${category.spec.displayName})}"></header>
+    <header th:replace="~{fragments :: header}"></header>
 
     <div class="main">
+        <header th:replace="~{fragments :: secondMenu(${category.spec.displayName})}"></header>
+
         <div>
             <ul>
                 <li th:each="post : ${posts.items}">
