@@ -13,7 +13,7 @@ spec:
   repo: https://github.com/allinprogram/halo-theme-clean
   settingName: "theme-clean-setting"
   configMapName: "theme-clean-configMap"
-  version: 0.0.3
+  version: 1.0.1
   require: 2.0.0
 
   customTemplates:
