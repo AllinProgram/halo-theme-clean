@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${'归档 ｜ ' + site.title}"></title>
+
+    <link rel="stylesheet" th:href="@{/assets/css/style.css?v=v0.0.8-alpha}" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
+</head>
+
+<body>
+    <header th:replace="~{fragments :: header}"></header>
+
+    <div class="main">
+        <header th:replace="~{fragments :: secondMenu('归档')}"></header>
+
+        <th:block th:each="archive : ${archives.items}">
+            <h2 th:text="${archive.year}"></h2>
+            <ul>
+                <th:block th:each="month : ${archive.months}">
+                    <li th:each="post : ${month.posts}">
+                        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
+                        </a>
+                    </li>
+                </th:block>
+            </ul>
+        </th:block>
+        <div id="page-turning">
+            <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">
+                <span>上一页</span>
+            </a>
+            <span th:text="${'当前第 ' + archives.page + ' 页'} +' / '+ ${'共 ' + archives.totalPages + ' 页'}"></span>
+            <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">
+                <span>下一页</span>
+            </a>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+
+<style>
+    #page-turning {
+        display: flex;
+        justify-content: center;
+        /* 水平居中 */
+        position: fixed;
+        /* 添加这个属性来固定元素位置 */
+        bottom: 5%;
+        /* 添加这个属性来使元素保持在页面底部 */
+        width: 100%;
+        /* 可能还需要设置宽度以确保元素横跨整个页面 */
+        left: 0;
+        /* 确保元素从页面左侧开始 */
+        background-color: #fff;
+        /* 如果需要，可以设置背景色以避免与页面内容重叠 */
+        padding: 10px;
+        /* 添加一些内边距以确保元素与页面底部有一定的间隔 */
+    }
+
+    /* 如果需要为上一页、页码、下一页之间的元素添加间隔 */
+    #page-turning>a,
+    #page-turning>span {
+        margin: 0 5px;
+        /* 为链接和文本添加间隔 */
+    }
+</style>
+
+</html>

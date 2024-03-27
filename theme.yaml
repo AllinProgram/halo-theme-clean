@@ -1,0 +1,24 @@
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: halo-theme-clean
+spec:
+  displayName: clean
+  author:
+    name: AllinProgram
+    website: https://allinprogram.com
+  description: A halo theme called clean is built with pure HTML, CSS and JS.
+  logo: https://halo.run/logo
+  website: https://github.com/allinprogram/halo-theme-clean
+  repo: https://github.com/allinprogram/halo-theme-clean
+  settingName: "theme-clean-setting"
+  configMapName: "theme-clean-configMap"
+  version: 1.0.1
+  require: 2.0.0
+
+  customTemplates:
+    page:
+      - name: fragments
+        description: thymeleaf fragments
+        screenshot: 
+        file: fragments.html

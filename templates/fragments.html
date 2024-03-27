@@ -1,0 +1,40 @@
+<div th:fragment="header" class="left-right-alignment">
+    <header style="border-bottom: 1px solid #ccc;">
+        <div th:if="${!#strings.contains(site.title,' ')}">
+            <h3 onclick="window.location.href='/'" th:text="${site.title}"></h3>
+        </div>
+        <div th:if="${#strings.contains(site.title,' ')}">
+            <h3 onclick="window.location.href='/'">
+                <span th:text="${#strings.substring(site.title, 0, #strings.indexOf(site.title,' '))}"></span>
+                <span
+                    th:text="${#strings.substring(site.title, #strings.indexOf(site.title,' '), #strings.length(site.title))}"
+                    class="avHub-hub"></span>
+            </h3>
+        </div>
+
+        <div class="header-menu">
+            <a th:each="menuItem : ${menuFinder.getPrimary().menuItems}" th:text="${menuItem.status.displayName}"
+                th:href=" @{${menuItem.status.href}}"></a>
+        </div>
+    </header>
+</div>
+
+<div th:fragment="secondMenu(pageTitle)" class="left-right-alignment">
+    <h4 onclick="location.reload(true);" th:text="${pageTitle}"></h4>
+    <div class="header-menu header-menu-scroll">
+        <a href="/archives" style="writing-mode: vertical-lr">归档</a>
+        <a href="/categories" style="writing-mode: vertical-lr">分类</a>
+        <a href="/tags" style="writing-mode: vertical-lr">标签</a>
+    </div>
+</div>
+
+<footer th:fragment="footer">
+    <!-- <halo:footer /> -->
+    <span>Copyright ©
+        <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+        AllinProgram.com
+        All Rights Reserved.
+    </span>
+    <!--    <br>-->
+    <!--    <a href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank"></a>-->
+</footer>

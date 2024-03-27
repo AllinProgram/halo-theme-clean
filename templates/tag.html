@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${tag.spec.displayName + ' | ' + site.title}"></title>
+
+    <link rel="stylesheet" th:href="@{/assets/css/style.css?v=v0.0.8-alpha}" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
+</head>
+
+<body>
+    <header th:replace="~{fragments :: header}"></header>
+
+    <div class="main">
+        <header th:replace="~{fragments :: secondMenu(${tag.spec.displayName})}"></header>
+
+        <div>
+            <ul>
+                <li th:each="post : ${posts.items}">
+                    <a th:text="${post.spec.title}" th:href="${post.status.permalink}"></a>
+                </li>
+            </ul>
+            <div th:if="${posts.hasPrevious() || posts.hasNext()}">
+                <a th:href="@{${posts.prevUrl}}">
+                    <span>上一页</span>
+                </a>
+                <span th:text="${posts.page} +' / '+ ${posts.total}"></span>
+                <a th:href="@{${posts.nextUrl}}">
+                    <span>下一页</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+
+</html>

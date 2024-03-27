@@ -1,0 +1,110 @@
+/* 大屏设备上的导航栏样式 */
+@media only screen and (min-width: 1024px) {
+    header {
+        width: 1024px;
+    }
+}
+
+/* 小屏设备下的媒体查询 */
+@media only screen and (max-width: 768px) {
+
+    /* 隐藏默认菜单 */
+    .menu {
+        display: none;
+    }
+
+    /* 显示抽屉式菜单 */
+    .drawer-menu {
+        display: block;
+    }
+}
+
+/* 抽屉式菜单样式 */
+.drawer-menu {
+    display: none;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1024px;
+    font-family: 'Noto Serif SC', serif;
+    box-sizing: border-box;
+}
+
+header {
+    max-height: 5vh;
+    /* 使顶部导航栏固定在顶部并居中 */
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1024px;
+    /* 高斯模糊 */
+    background-color: rgb(255 255 255 / 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 0 0 15px 15px;
+    /* 左右对齐 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* 左右对齐 */
+.left-right-alignment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main {
+    /* 指定高度后需要设置overflow才能生效 */
+    /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
+    margin: 5vh 10px 2vh;
+    min-height: 90vh;
+}
+
+footer {
+    max-height: 3vh;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline dotted #FF9900;
+    padding: 0 12px;
+}
+
+a:hover {
+    color: #FF9900;
+    /* text-decoration: none; */
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+}
+
+
+.header-menu {
+    display: flex;
+}
+
+.header-menu-scroll {
+    max-width: 75vh;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    background-color: #FF9900;
+}
+
+.avHub-hub {
+    border: 3px solid #FF9900;
+    border-radius: 10px;
+    background: #FF9900;
+}
+
+p {
+    margin: 1px auto;
+}
