@@ -12,6 +12,10 @@
         <article class="post-content">
             <div th:utext="${post.content.content}"></div>
         </article>
+
+        <div class="comment-section">
+            <halo:comment group="content.halo.run" kind="Post" name="${post.metadata.name}" />
+        </div>
     </div>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>

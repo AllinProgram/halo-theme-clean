@@ -2,8 +2,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" th:content="${site.subtitle}" th:if="${site.subtitle != null}">
+    <meta name="description" th:content="${site.seo.description != null ? site.seo.description : site.subtitle}" th:if="${site.seo.description != null || site.subtitle != null}">
+    <meta name="keywords" th:content="${site.seo.keywords}" th:if="${site.seo != null && site.seo.keywords != null}">
     <title th:text="${title}"></title>
+    <link rel="icon" th:href="@{${site.favicon}}" th:if="${site.favicon != null}" />
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
 </head>
