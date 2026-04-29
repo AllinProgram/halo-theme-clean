@@ -1,0 +1,15 @@
+<header th:fragment="header" class="site-header">
+    <div class="site-brand" th:if="${!#strings.contains(site.title,' ')}">
+        <h3 onclick="window.location.href='/'" th:text="${site.title}"></h3>
+    </div>
+    <div class="site-brand" th:if="${#strings.contains(site.title,' ')}">
+        <h3 onclick="window.location.href='/'">
+            <span th:text="${#strings.substring(site.title, 0, #strings.indexOf(site.title,' '))}"></span>
+            <span th:text="${#strings.substring(site.title, #strings.indexOf(site.title,' '), #strings.length(site.title))}" class="avHub-hub"></span>
+        </h3>
+    </div>
+
+    <nav class="header-menu">
+        <a th:each="menuItem : ${menuFinder.getPrimary().menuItems}" th:text="${menuItem.status.displayName}" th:href="@{${menuItem.status.href}}"></a>
+    </nav>
+</header>

@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${site.title}"></title>
-
-    <link rel="stylesheet" th:href="@{/assets/css/style.css?v=v0.0.9-alpha}" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
-</head>
+<head th:replace="~{fragments/head :: head(${site.title})}"></head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments/header :: header}"></header>
 
     <div class="main">
-    
+        <ul class="post-list" th:if="${posts != null && !#lists.isEmpty(posts.items)}">
+            <li th:each="post : ${posts.items}" class="post-item">
+                <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}" class="post-title"></a>
+                <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
+            </li>
+        </ul>
+        <div th:replace="~{fragments/pagination :: pagination(${posts})}"></div>
     </div>
 
-    <footer th:replace="~{fragments :: footer}"></footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 
+    <script th:src="@{/assets/js/main.js}"></script>
 </body>
 
 </html>
