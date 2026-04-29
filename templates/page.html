@@ -14,7 +14,7 @@
         </article>
 
         <div class="comment-section">
-            <halo:comment group="content.halo.run" kind="SinglePage" name="${singlePage.metadata.name}" />
+            <halo:comment group="content.halo.run" kind="SinglePage" th:attr="name=${singlePage.metadata.name}" />
         </div>
     </div>
 
