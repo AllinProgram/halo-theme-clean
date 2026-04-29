@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{fragments/head :: head(${(contributor != null ? contributor.spec.displayName : '作者') + ' | ' + site.title})}"></head>
+
+<body>
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <div class="main">
+        <header th:replace="~{fragments/second-menu :: secondMenu(${contributor != null ? contributor.spec.displayName : '作者'})}"></header>
+
+        <ul class="post-list" th:if="${posts != null && !#lists.isEmpty(posts.items)}">
+            <li th:each="post : ${posts.items}" class="post-item">
+                <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}" class="post-title"></a>
+                <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
+            </li>
+        </ul>
+        <div th:replace="~{fragments/pagination :: pagination(${posts})}"></div>
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script th:src="@{/assets/js/main.js}"></script>
+</body>
+
+</html>
