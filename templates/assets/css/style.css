@@ -1,27 +1,19 @@
 /* 大屏设备上的导航栏样式 */
 @media only screen and (min-width: 1024px) {
-    header {
+    .site-header {
         width: 1024px;
     }
 }
 
 /* 小屏设备下的媒体查询 */
 @media only screen and (max-width: 768px) {
-
-    /* 隐藏默认菜单 */
-    .menu {
-        display: none;
+    .second-menu h4 {
+        font-size: 1rem;
     }
 
-    /* 显示抽屉式菜单 */
-    .drawer-menu {
-        display: block;
+    .post-content img {
+        max-width: 100%;
     }
-}
-
-/* 抽屉式菜单样式 */
-.drawer-menu {
-    display: none;
 }
 
 body {
@@ -31,24 +23,23 @@ body {
     box-sizing: border-box;
 }
 
-header {
+.site-header {
     max-height: 5vh;
-    /* 使顶部导航栏固定在顶部并居中 */
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
     max-width: 1024px;
-    /* 高斯模糊 */
     background-color: rgb(255 255 255 / 0.3);
     backdrop-filter: blur(4px);
     border-radius: 0 0 15px 15px;
-    /* 左右对齐 */
+    border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+    z-index: 100;
 }
 
 /* 左右对齐 */
@@ -65,10 +56,12 @@ header {
     min-height: 90vh;
 }
 
-footer {
+.site-footer {
     max-height: 3vh;
     border-top: 1px solid #ccc;
     text-align: center;
+    padding: 8px 0;
+    font-size: 0.85rem;
 }
 
 a {
@@ -107,4 +100,202 @@ a:hover {
 
 p {
     margin: 1px auto;
+}
+
+/* 二级菜单 */
+.second-menu {
+    margin-bottom: 16px;
+}
+
+.vertical-link {
+    writing-mode: vertical-lr;
+}
+
+/* 分页 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 12px 0;
+}
+
+.pagination a {
+    padding: 4px 12px;
+}
+
+.page-info {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 文章列表 */
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    gap: 16px;
+}
+
+.post-item a {
+    flex: 1;
+    padding: 0;
+    text-decoration: none;
+}
+
+.post-date {
+    color: #999;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* 归档列表 */
+.archive-list {
+    list-style: none;
+    padding: 0 0 0 16px;
+    margin: 8px 0 24px;
+}
+
+.archive-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    gap: 16px;
+}
+
+.archive-list li a {
+    flex: 1;
+    padding: 0;
+    text-decoration: none;
+}
+
+/* 分类树 */
+.category-tree,
+.category-children {
+    list-style: none;
+    padding: 0 0 0 16px;
+    margin: 8px 0;
+}
+
+.category-tree > li,
+.category-children > li {
+    padding: 4px 0;
+}
+
+.category-tree > li > a,
+.category-children > li > a {
+    padding: 0;
+}
+
+/* 标签列表 */
+.tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tag-list li a {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.tag-list li a:hover {
+    border-color: #FF9900;
+    color: #FF9900;
+}
+
+/* 文章内容 */
+.post-content {
+    line-height: 1.8;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.post-content img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 16px auto;
+    border-radius: 4px;
+}
+
+.post-content blockquote {
+    margin: 16px 0;
+    padding: 8px 16px;
+    border-left: 4px solid #FF9900;
+    background-color: #fafafa;
+    color: #555;
+}
+
+.post-content pre {
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+.post-content code {
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.post-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+.post-content th,
+.post-content td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.post-content th {
+    background-color: #fafafa;
+}
+
+.post-content ul,
+.post-content ol {
+    padding-left: 24px;
+}
+
+.post-content hr {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 24px 0;
 }
