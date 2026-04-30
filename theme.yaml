@@ -11,14 +11,5 @@ spec:
   logo: https://halo.run/logo
   website: https://github.com/allinprogram/halo-theme-clean
   repo: https://github.com/allinprogram/halo-theme-clean
-  settingName: "theme-clean-setting"
-  configMapName: "theme-clean-configMap"
-  version: 1.0.1
+  version: 1.1.0
   require: 2.0.0
-
-  customTemplates:
-    page:
-      - name: fragments
-        description: thymeleaf fragments
-        screenshot: 
-        file: fragments.html

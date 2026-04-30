@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${'分类 | ' + site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${'分类 | ' + site.title}, ${null}, ${null})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu('分类')}"></header>
 
-        <ul class="category-tree">
+        <ul class="category-tree" th:if="${categories != null && !#lists.isEmpty(categories)}">
             <li th:each="category : ${categories}">
                 <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
                 <th:block th:if="${not #lists.isEmpty(category.children)}">
@@ -17,10 +18,13 @@
                 </th:block>
             </li>
         </ul>
-    </div>
+        <div class="empty-state" th:if="${categories == null || #lists.isEmpty(categories)}">
+            <p>暂无分类</p>
+        </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 

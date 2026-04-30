@@ -1,8 +1,8 @@
 <div th:fragment="secondMenu(pageTitle)" class="second-menu left-right-alignment">
-    <h4 onclick="location.reload(true);" th:text="${pageTitle}"></h4>
-    <div class="header-menu header-menu-scroll">
-        <a href="/archives" class="vertical-link">归档</a>
-        <a href="/categories" class="vertical-link">分类</a>
-        <a href="/tags" class="vertical-link">标签</a>
-    </div>
+    <h4 th:text="${pageTitle}"></h4>
+    <nav class="header-menu header-menu-scroll" aria-label="Secondary navigation">
+        <a th:href="@{/archives}" class="vertical-link">归档</a>
+        <a th:href="@{/categories}" class="vertical-link">分类</a>
+        <a th:href="@{/tags}" class="vertical-link">标签</a>
+    </nav>
 </div>

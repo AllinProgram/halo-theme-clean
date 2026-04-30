@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${tag.spec.displayName + ' | ' + site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${tag.spec.displayName + ' | ' + site.title}, ${null}, ${null})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu(${tag.spec.displayName})}"></header>
 
-        <ul class="post-list">
+        <ul class="post-list" th:if="${posts != null && !#lists.isEmpty(posts.items)}">
             <li th:each="post : ${posts.items}" class="post-item">
                 <a th:text="${post.spec.title}" th:href="@{${post.status.permalink}}"></a>
                 <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
+        <div class="empty-state" th:if="${posts == null || #lists.isEmpty(posts.items)}">
+            <p>该标签下暂无文章</p>
+        </div>
         <div th:replace="~{fragments/pagination :: pagination(${posts})}"></div>
-    </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 

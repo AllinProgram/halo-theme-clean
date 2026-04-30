@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${(contributor != null ? contributor.spec.displayName : '作者') + ' | ' + site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${(contributor != null ? contributor.spec.displayName : '作者') + ' | ' + site.title}, ${null}, ${null})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu(${contributor != null ? contributor.spec.displayName : '作者'})}"></header>
 
         <ul class="post-list" th:if="${posts != null && !#lists.isEmpty(posts.items)}">
@@ -15,11 +16,14 @@
                 <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
+        <div class="empty-state" th:if="${posts == null || #lists.isEmpty(posts.items)}">
+            <p>该作者暂无文章</p>
+        </div>
         <div th:replace="~{fragments/pagination :: pagination(${posts})}"></div>
-    </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 
