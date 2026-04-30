@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${singlePage.spec.title + ' | ' + site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${singlePage.spec.title + ' | ' + site.title}, ${singlePage.spec.excerpt}, ${singlePage.status.permalink})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu(${singlePage.spec.title})}"></header>
 
         <article class="post-content">
@@ -16,10 +17,10 @@
         <div class="comment-section">
             <halo:comment group="content.halo.run" kind="SinglePage" th:attr="name=${singlePage.metadata.name}" />
         </div>
-    </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 

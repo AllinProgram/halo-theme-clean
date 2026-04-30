@@ -1,15 +1,22 @@
 <header th:fragment="header" class="site-header">
-    <div class="site-brand" th:if="${!#strings.contains(site.title,' ')}">
-        <h3 onclick="window.location.href='/'" th:text="${site.title}"></h3>
-    </div>
-    <div class="site-brand" th:if="${#strings.contains(site.title,' ')}">
-        <h3 onclick="window.location.href='/'">
-            <span th:text="${#strings.substring(site.title, 0, #strings.indexOf(site.title,' '))}"></span>
-            <span th:text="${#strings.substring(site.title, #strings.indexOf(site.title,' '), #strings.length(site.title))}" class="avHub-hub"></span>
-        </h3>
+    <div class="site-brand">
+        <a href="/">
+            <h3>
+                <span th:if="${!#strings.contains(site.title,' ')}" th:text="${site.title}"></span>
+                <th:block th:if="${#strings.contains(site.title,' ')}">
+                    <span th:text="${#strings.substring(site.title, 0, #strings.indexOf(site.title,' '))}"></span>
+                    <span th:text="${#strings.substring(site.title, #strings.indexOf(site.title,' '), #strings.length(site.title))}" class="avHub-hub"></span>
+                </th:block>
+            </h3>
+        </a>
     </div>
 
-    <nav class="header-menu">
-        <a th:each="menuItem : ${menuFinder.getPrimary().menuItems}" th:text="${menuItem.status.displayName}" th:href="@{${menuItem.status.href}}"></a>
+    <nav class="header-menu" aria-label="Main navigation">
+        <a th:each="menuItem : ${menuFinder.getPrimary().menuItems}"
+           th:text="${menuItem.status.displayName}"
+           th:href="@{${menuItem.status.href}}"></a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="toggleTheme()">
+            <span class="theme-toggle-icon">&#9790;</span>
+        </button>
     </nav>
 </header>

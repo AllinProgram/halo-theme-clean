@@ -1,40 +1,160 @@
-/* 大屏设备上的导航栏样式 */
-@media only screen and (min-width: 1024px) {
-    .site-header {
-        width: 1024px;
+/* ============================================
+   CSS Variables
+   ============================================ */
+:root {
+    --color-accent: #FF9900;
+    --color-text: #333;
+    --color-text-secondary: #666;
+    --color-text-muted: #999;
+    --color-bg: #fff;
+    --color-bg-secondary: #fafafa;
+    --color-bg-code: #f5f5f5;
+    --color-border: #ccc;
+    --color-border-light: #eee;
+    --color-border-lighter: #ddd;
+    --color-header-bg: rgba(255, 255, 255, 0.3);
+    --color-blockquote-bg: #fafafa;
+    --color-blockquote-text: #555;
+    --font-family: 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+    --max-width: 1024px;
+    --header-height: 48px;
+}
+
+/* ============================================
+   Dark Mode
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-text: #e0e0e0;
+        --color-text-secondary: #bbb;
+        --color-text-muted: #888;
+        --color-bg: #1a1a1a;
+        --color-bg-secondary: #2a2a2a;
+        --color-bg-code: #2d2d2d;
+        --color-border: #555;
+        --color-border-light: #333;
+        --color-border-lighter: #444;
+        --color-header-bg: rgba(26, 26, 26, 0.7);
+        --color-blockquote-bg: #2a2a2a;
+        --color-blockquote-text: #bbb;
     }
 }
 
-/* 小屏设备下的媒体查询 */
-@media only screen and (max-width: 768px) {
-    .second-menu h4 {
-        font-size: 1rem;
-    }
+[data-theme="dark"] {
+    --color-text: #e0e0e0;
+    --color-text-secondary: #bbb;
+    --color-text-muted: #888;
+    --color-bg: #1a1a1a;
+    --color-bg-secondary: #2a2a2a;
+    --color-bg-code: #2d2d2d;
+    --color-border: #555;
+    --color-border-light: #333;
+    --color-border-lighter: #444;
+    --color-header-bg: rgba(26, 26, 26, 0.7);
+    --color-blockquote-bg: #2a2a2a;
+    --color-blockquote-text: #bbb;
+}
 
-    .post-content img {
-        max-width: 100%;
-    }
+[data-theme="light"] {
+    --color-text: #333;
+    --color-text-secondary: #666;
+    --color-text-muted: #999;
+    --color-bg: #fff;
+    --color-bg-secondary: #fafafa;
+    --color-bg-code: #f5f5f5;
+    --color-border: #ccc;
+    --color-border-light: #eee;
+    --color-border-lighter: #ddd;
+    --color-header-bg: rgba(255, 255, 255, 0.3);
+    --color-blockquote-bg: #fafafa;
+    --color-blockquote-text: #555;
+}
+
+/* ============================================
+   Base Reset
+   ============================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    background-color: var(--color-accent);
+    color: #fff;
 }
 
 body {
     margin: 0 auto;
-    max-width: 1024px;
-    font-family: 'Noto Serif SC', serif;
-    box-sizing: border-box;
+    max-width: var(--max-width);
+    font-family: var(--font-family);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ============================================
+   Skip Navigation (A11y)
+   ============================================ */
+.skip-nav {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 8px 16px;
+    z-index: 999;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+}
+
+.skip-nav:focus {
+    top: 0;
+}
+
+/* ============================================
+   Links
+   ============================================ */
+a {
+    color: inherit;
+    text-decoration: underline dotted var(--color-accent);
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--color-accent);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* ============================================
+   Site Header
+   ============================================ */
+@media only screen and (min-width: 1024px) {
+    .site-header {
+        width: var(--max-width);
+    }
 }
 
 .site-header {
-    max-height: 5vh;
+    max-height: var(--header-height);
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1024px;
-    background-color: rgb(255 255 255 / 0.3);
+    max-width: var(--max-width);
+    background-color: var(--color-header-bg);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 0 0 15px 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--color-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,95 +162,107 @@ body {
     z-index: 100;
 }
 
-/* 左右对齐 */
+.site-brand {
+    cursor: pointer;
+}
+
+.site-brand a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-brand h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.avHub-hub {
+    border: 3px solid var(--color-accent);
+    border-radius: 10px;
+    background: var(--color-accent);
+    color: #fff;
+    padding: 0 4px;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+.header-menu {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.header-menu a {
+    padding: 4px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.header-menu a:hover {
+    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    color: var(--color-accent);
+}
+
+.header-menu-scroll {
+    max-width: 60vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.header-menu-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.main {
+    margin: calc(var(--header-height) + 16px) 10px 32px;
+    min-height: calc(100vh - var(--header-height) - 80px);
+}
+
 .left-right-alignment {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.main {
-    /* 指定高度后需要设置overflow才能生效 */
-    /* 此处使用min-height而不是height，是为了将footer与main一起滑动 */
-    margin: 5vh 10px 2vh;
-    min-height: 90vh;
-}
-
-.site-footer {
-    max-height: 3vh;
-    border-top: 1px solid #ccc;
-    text-align: center;
-    padding: 8px 0;
-    font-size: 0.85rem;
-}
-
-a {
-    color: inherit;
-    text-decoration: underline dotted #FF9900;
-    padding: 0 12px;
-}
-
-a:hover {
-    color: #FF9900;
-    /* text-decoration: none; */
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
-}
-
-
-.header-menu {
-    display: flex;
-}
-
-.header-menu-scroll {
-    max-width: 75vh;
-    overflow: auto;
-}
-
-::-webkit-scrollbar {
-    display: none;
-    background-color: #FF9900;
-}
-
-.avHub-hub {
-    border: 3px solid #FF9900;
-    border-radius: 10px;
-    background: #FF9900;
-}
-
-p {
-    margin: 1px auto;
-}
-
-/* 二级菜单 */
+/* ============================================
+   Second Menu
+   ============================================ */
 .second-menu {
     margin-bottom: 16px;
 }
 
+.second-menu h4 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
 .vertical-link {
     writing-mode: vertical-lr;
+    padding: 8px 4px !important;
 }
 
-/* 分页 */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 24px;
-    padding: 12px 0;
+/* ============================================
+   Site Footer
+   ============================================ */
+.site-footer {
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
 }
 
-.pagination a {
-    padding: 4px 12px;
-}
-
-.page-info {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* 文章列表 */
+/* ============================================
+   Post List
+   ============================================ */
 .post-list {
     list-style: none;
     padding: 0;
@@ -141,8 +273,8 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 10px 0;
-    border-bottom: 1px dashed #eee;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--color-border-light);
     gap: 16px;
 }
 
@@ -150,15 +282,77 @@ p {
     flex: 1;
     padding: 0;
     text-decoration: none;
+    font-size: 1.05rem;
+}
+
+.post-item a:hover {
+    color: var(--color-accent);
 }
 
 .post-date {
-    color: #999;
+    color: var(--color-text-muted);
     font-size: 0.85rem;
     white-space: nowrap;
 }
 
-/* 归档列表 */
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.post-meta span {
+    white-space: nowrap;
+}
+
+.post-meta a {
+    padding: 0 4px;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   Pagination
+   ============================================ */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 12px 0;
+}
+
+.pagination a {
+    padding: 6px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.pagination a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.page-info {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   Archive List
+   ============================================ */
+.archive-year {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    color: var(--color-text);
+}
+
 .archive-list {
     list-style: none;
     padding: 0 0 0 16px;
@@ -179,7 +373,9 @@ p {
     text-decoration: none;
 }
 
-/* 分类树 */
+/* ============================================
+   Category Tree
+   ============================================ */
 .category-tree,
 .category-children {
     list-style: none;
@@ -197,7 +393,9 @@ p {
     padding: 0;
 }
 
-/* 标签列表 */
+/* ============================================
+   Tag List
+   ============================================ */
 .tag-list {
     list-style: none;
     padding: 0;
@@ -210,18 +408,20 @@ p {
 .tag-list li a {
     display: inline-block;
     padding: 4px 12px;
-    border: 1px dashed #ccc;
+    border: 1px dashed var(--color-border);
     border-radius: 4px;
     text-decoration: none;
     transition: all 0.2s;
 }
 
 .tag-list li a:hover {
-    border-color: #FF9900;
-    color: #FF9900;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
 }
 
-/* 文章内容 */
+/* ============================================
+   Post Content (Article Typography)
+   ============================================ */
 .post-content {
     line-height: 1.8;
 }
@@ -234,34 +434,42 @@ p {
 .post-content h6 {
     margin-top: 24px;
     margin-bottom: 12px;
+    color: var(--color-text);
 }
 
 .post-content img {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
     display: block;
     margin: 16px auto;
     border-radius: 4px;
 }
 
+@media only screen and (min-width: 769px) {
+    .post-content img {
+        max-width: 80%;
+    }
+}
+
 .post-content blockquote {
     margin: 16px 0;
     padding: 8px 16px;
-    border-left: 4px solid #FF9900;
-    background-color: #fafafa;
-    color: #555;
+    border-left: 4px solid var(--color-accent);
+    background-color: var(--color-blockquote-bg);
+    color: var(--color-blockquote-text);
 }
 
 .post-content pre {
-    background-color: #f5f5f5;
+    background-color: var(--color-bg-code);
     padding: 16px;
     border-radius: 4px;
     overflow-x: auto;
     font-size: 0.9rem;
+    border: 1px solid var(--color-border-light);
 }
 
 .post-content code {
-    background-color: #f5f5f5;
+    background-color: var(--color-bg-code);
     padding: 2px 6px;
     border-radius: 3px;
     font-size: 0.9rem;
@@ -270,23 +478,26 @@ p {
 .post-content pre code {
     background-color: transparent;
     padding: 0;
+    border: none;
 }
 
 .post-content table {
     width: 100%;
     border-collapse: collapse;
     margin: 16px 0;
+    display: block;
+    overflow-x: auto;
 }
 
 .post-content th,
 .post-content td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border-lighter);
     padding: 8px 12px;
     text-align: left;
 }
 
 .post-content th {
-    background-color: #fafafa;
+    background-color: var(--color-bg-secondary);
 }
 
 .post-content ul,
@@ -296,16 +507,123 @@ p {
 
 .post-content hr {
     border: none;
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed var(--color-border);
     margin: 24px 0;
 }
 
-/* 评论区域 */
+/* ============================================
+   Comment Section
+   ============================================ */
 .comment-section {
     margin-top: 32px;
     padding-top: 24px;
-    border-top: 1px dashed #eee;
-    font-family: 'Noto Serif SC', serif;
+    border-top: 1px dashed var(--color-border-light);
+    font-family: var(--font-family);
 }
 
+/* ============================================
+   Empty State
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 48px 16px;
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
 
+/* ============================================
+   Back to Top Button
+   ============================================ */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-top:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.back-to-top:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ============================================
+   Dark Mode Toggle
+   ============================================ */
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 1rem;
+    color: var(--color-text);
+    transition: all 0.2s;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Responsive: Small Screens
+   ============================================ */
+@media only screen and (max-width: 768px) {
+    .second-menu h4 {
+        font-size: 1rem;
+    }
+
+    .post-content img {
+        max-width: 100%;
+    }
+
+    .site-brand h3 {
+        font-size: 1rem;
+    }
+
+    .header-menu a {
+        padding: 4px 6px;
+        font-size: 0.9rem;
+    }
+
+    .back-to-top {
+        bottom: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}

@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${post.spec.title + ' | ' + site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${post.spec.title + ' | ' + site.title}, ${post.spec.excerpt}, ${post.status.permalink})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu(${post.spec.title})}"></header>
+
+        <div class="post-meta">
+            <span th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
+            <span th:if="${post.contributor != null}">
+                &middot; <span th:text="${post.contributor.spec.displayName}"></span>
+            </span>
+            <th:block th:if="${post.categories != null && !#lists.isEmpty(post.categories)}">
+                &middot;
+                <a th:each="cat : ${post.categories}" th:href="@{${cat.status.permalink}}" th:text="${cat.spec.displayName}"></a>
+            </th:block>
+            <th:block th:if="${post.tags != null && !#lists.isEmpty(post.tags)}">
+                &middot;
+                <a th:each="tag : ${post.tags}" th:href="@{${tag.status.permalink}}" th:text="'#' + ${tag.spec.displayName}"></a>
+            </th:block>
+        </div>
 
         <article class="post-content">
             <div th:utext="${post.content.content}"></div>
@@ -16,10 +32,10 @@
         <div class="comment-section">
             <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" />
         </div>
-    </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 

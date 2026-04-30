@@ -1,9 +1,9 @@
 <div th:fragment="pagination(pageObj)" class="pagination" th:if="${pageObj.hasPrevious() || pageObj.hasNext()}">
-    <a th:if="${pageObj.hasPrevious()}" th:href="@{${pageObj.prevUrl}}" class="page-prev">
-        <span>上一页</span>
+    <a th:if="${pageObj.hasPrevious()}" th:href="@{${pageObj.prevUrl}}" class="page-prev" aria-label="Previous page">
+        <span>&laquo; 上一页</span>
     </a>
     <span class="page-info" th:text="${'第 ' + pageObj.page + ' 页 / 共 ' + pageObj.totalPages + ' 页'}"></span>
-    <a th:if="${pageObj.hasNext()}" th:href="@{${pageObj.nextUrl}}" class="page-next">
-        <span>下一页</span>
+    <a th:if="${pageObj.hasNext()}" th:href="@{${pageObj.nextUrl}}" class="page-next" aria-label="Next page">
+        <span>下一页 &raquo;</span>
     </a>
 </div>

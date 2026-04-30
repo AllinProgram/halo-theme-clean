@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${'归档 | ' + site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${'归档 | ' + site.title}, ${null}, ${null})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu('归档')}"></header>
 
-        <th:block th:each="archive : ${archives.items}">
-            <h2 th:text="${archive.year}"></h2>
-            <ul class="archive-list">
-                <th:block th:each="month : ${archive.months}">
-                    <li th:each="post : ${month.posts}">
-                        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
-                        <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
-                    </li>
-                </th:block>
-            </ul>
-        </th:block>
+        <div th:if="${archives != null && !#lists.isEmpty(archives.items)}">
+            <th:block th:each="archive : ${archives.items}">
+                <h2 class="archive-year" th:text="${archive.year}"></h2>
+                <ul class="archive-list">
+                    <th:block th:each="month : ${archive.months}">
+                        <li th:each="post : ${month.posts}">
+                            <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+                            <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
+                        </li>
+                    </th:block>
+                </ul>
+            </th:block>
+        </div>
+        <div class="empty-state" th:if="${archives == null || #lists.isEmpty(archives.items)}">
+            <p>暂无归档</p>
+        </div>
         <div th:replace="~{fragments/pagination :: pagination(${archives})}"></div>
-    </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 

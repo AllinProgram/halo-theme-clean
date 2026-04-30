@@ -1,34 +1,95 @@
 (function () {
     'use strict';
 
-    // 隐藏评论组件中的登录按钮
+    /* ============================================
+       Dark Mode Toggle
+       ============================================ */
+    var THEME_KEY = 'theme-preference';
+
+    function getThemePreference() {
+        var stored = localStorage.getItem(THEME_KEY);
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        var icon = document.querySelector('.theme-toggle-icon');
+        if (icon) {
+            icon.textContent = theme === 'dark' ? '\u2600' : '\u263E';
+        }
+    }
+
+    window.toggleTheme = function () {
+        var current = getThemePreference();
+        var next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+    };
+
+    applyTheme(getThemePreference());
+
+    /* ============================================
+       Back to Top Button
+       ============================================ */
+    window.scrollToTop = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    var backToTopBtn = document.querySelector('.back-to-top');
+    if (backToTopBtn) {
+        var scrollThreshold = 300;
+        var ticking = false;
+
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    if (window.scrollY > scrollThreshold) {
+                        backToTopBtn.classList.add('visible');
+                    } else {
+                        backToTopBtn.classList.remove('visible');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
+
+    /* ============================================
+       Comment Widget Login Button Hiding
+       ============================================ */
     function hideCommentLoginButton() {
-        const commentWidget = document.querySelector('comment-widget');
+        var commentWidget = document.querySelector('comment-widget');
         if (!commentWidget || !commentWidget.shadowRoot) {
             return;
         }
 
-        const style = document.createElement('style');
-        style.textContent = `
-            /* 隐藏登录按钮，需根据实际类名调整 */
-            /* 建议通过浏览器开发者工具(F12)查看评论组件中登录按钮的具体类名后替换下方选择器 */
-            .login-button,
-            .form__login,
-            [class*="login"] {
-                display: none !important;
-            }
-        `;
+        var existing = commentWidget.shadowRoot.querySelector('#clean-theme-hide-login');
+        if (existing) return;
 
-        // 向 comment-widget 的 shadowRoot 注入样式
+        var style = document.createElement('style');
+        style.id = 'clean-theme-hide-login';
+        style.textContent =
+            '.login-button,' +
+            '.form__login {' +
+            '    display: none !important;' +
+            '}';
+
         commentWidget.shadowRoot.appendChild(style);
     }
 
-    // 监听评论组件渲染（Shadow DOM 异步加载）
-    const observer = new MutationObserver(function (mutations) {
-        const commentWidget = document.querySelector('comment-widget');
+    var observerTimeout = null;
+
+    var observer = new MutationObserver(function () {
+        var commentWidget = document.querySelector('comment-widget');
         if (commentWidget && commentWidget.shadowRoot) {
             hideCommentLoginButton();
             observer.disconnect();
+            if (observerTimeout) {
+                clearTimeout(observerTimeout);
+                observerTimeout = null;
+            }
         }
     });
 
@@ -36,6 +97,9 @@
         hideCommentLoginButton();
     } else {
         observer.observe(document.body, { childList: true, subtree: true });
+        observerTimeout = setTimeout(function () {
+            observer.disconnect();
+        }, 10000);
     }
 
 })();

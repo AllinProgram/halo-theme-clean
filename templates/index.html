@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 
-<head th:replace="~{fragments/head :: head(${site.title})}"></head>
+<head th:replace="~{fragments/head :: head(${site.title}, ${site.seo != null ? site.seo.description : site.subtitle}, ${site.url})}"></head>
 
 <body>
+    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
-    <div class="main">
+    <main id="main-content" class="main">
         <ul class="post-list" th:if="${posts != null && !#lists.isEmpty(posts.items)}">
             <li th:each="post : ${posts.items}" class="post-item">
                 <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}" class="post-title"></a>
                 <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
             </li>
         </ul>
+        <div class="empty-state" th:if="${posts == null || #lists.isEmpty(posts.items)}">
+            <p>暂无文章</p>
+        </div>
         <div th:replace="~{fragments/pagination :: pagination(${posts})}"></div>
-    </div>
+    </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 
