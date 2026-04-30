@@ -181,7 +181,6 @@ a:focus-visible {
 
 .header-menu a {
     padding: 4px 10px;
-    text-decoration: none;
     white-space: nowrap;
     border-radius: 4px;
     transition: background-color 0.2s, color 0.2s;
@@ -330,15 +329,13 @@ a:focus-visible {
 }
 
 .pagination a {
-    padding: 6px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s;
+    padding: 0;
+    text-decoration: underline dotted var(--color-accent);
+    text-underline-offset: 2px;
+    transition: color 0.2s;
 }
 
 .pagination a:hover {
-    border-color: var(--color-accent);
     color: var(--color-accent);
 }
 
@@ -376,141 +373,8 @@ a:focus-visible {
     text-decoration: none;
 }
 
-/* ============================================
-   Archives Table of Contents
-   ============================================ */
-.archives-container {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-}
-
-.archives-toc {
-    flex: 0 0 200px;
-    position: sticky;
-    top: calc(var(--header-height) + 16px);
-    max-height: calc(100vh - var(--header-height) - 32px);
-    overflow-y: auto;
-    background-color: var(--color-bg-secondary);
-    border: 1px solid var(--color-border-light);
-    border-radius: 8px;
-    padding: 12px;
-}
-
-.toc-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.toc-header h4 {
-    margin: 0;
-    font-size: 1rem;
-    color: var(--color-text);
-}
-
-.toc-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    color: var(--color-text-muted);
-    font-size: 0.8rem;
-    transition: transform 0.2s;
-}
-
-.toc-toggle.collapsed .toc-toggle-icon {
-    transform: rotate(-90deg);
-}
-
-.toc-nav {
-    max-height: 300px;
-    overflow-y: auto;
-    transition: max-height 0.3s ease;
-}
-
-.toc-nav.collapsed {
-    max-height: 0;
-    overflow: hidden;
-}
-
-.toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.toc-list li {
-    margin-bottom: 4px;
-}
-
-.toc-list a {
-    display: block;
-    padding: 4px 8px;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-size: 0.85rem;
-    border-radius: 4px;
-    transition: all 0.2s;
-}
-
-.toc-list a:hover {
-    color: var(--color-accent);
-    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
-}
-
-.toc-list a.active {
-    color: var(--color-accent);
-    background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
-    font-weight: 500;
-}
-
-.toc-list .toc-h2 {
-    padding-left: 8px;
-    font-weight: 500;
-}
-
-.toc-list .toc-h3 {
-    padding-left: 16px;
-    font-size: 0.8rem;
-}
-
-.toc-list .toc-h4 {
-    padding-left: 24px;
-    font-size: 0.8rem;
-}
-
-.toc-list .toc-h5 {
-    padding-left: 32px;
-    font-size: 0.75rem;
-}
-
-.toc-list .toc-h6 {
-    padding-left: 40px;
-    font-size: 0.75rem;
-}
-
 .archives-content {
-    flex: 1;
     min-width: 0;
-}
-
-@media only screen and (max-width: 768px) {
-    .archives-container {
-        flex-direction: column;
-    }
-    
-    .archives-toc {
-        flex: none;
-        width: 100%;
-        position: static;
-        max-height: none;
-    }
-    
-    .toc-nav {
-        max-height: 200px;
-    }
 }
 
 /* ============================================

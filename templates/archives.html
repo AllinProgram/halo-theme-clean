@@ -9,36 +9,22 @@
     <main id="main-content" class="main">
         <header th:replace="~{fragments/second-menu :: secondMenu('归档')}"></header>
 
-        <div class="archives-container">
-            <aside class="archives-toc" id="archives-toc">
-                <div class="toc-header">
-                    <h4>目录</h4>
-                    <button class="toc-toggle" id="toc-toggle" aria-label="展开/收起目录">
-                        <span class="toc-toggle-icon">&#9660;</span>
-                    </button>
-                </div>
-                <nav class="toc-nav" id="toc-nav">
-                    <ul class="toc-list" id="toc-list"></ul>
-                </nav>
-            </aside>
-
-            <div class="archives-content">
-                <div th:if="${archives != null && !#lists.isEmpty(archives.items)}">
-                    <th:block th:each="archive : ${archives.items}">
-                        <h2 class="archive-year" th:text="${archive.year}"></h2>
-                        <ul class="archive-list">
-                            <th:block th:each="month : ${archive.months}">
-                                <li th:each="post : ${month.posts}">
-                                    <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
-                                    <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
-                                </li>
-                            </th:block>
-                        </ul>
-                    </th:block>
-                </div>
-                <div class="empty-state" th:if="${archives == null || #lists.isEmpty(archives.items)}">
-                    <p>暂无归档</p>
-                </div>
+        <div class="archives-content">
+            <div th:if="${archives != null && !#lists.isEmpty(archives.items)}">
+                <th:block th:each="archive : ${archives.items}">
+                    <h2 class="archive-year" th:text="${archive.year}"></h2>
+                    <ul class="archive-list">
+                        <th:block th:each="month : ${archive.months}">
+                            <li th:each="post : ${month.posts}">
+                                <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+                                <span class="post-date" th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
+                            </li>
+                        </th:block>
+                    </ul>
+                </th:block>
+            </div>
+            <div class="empty-state" th:if="${archives == null || #lists.isEmpty(archives.items)}">
+                <p>暂无归档</p>
             </div>
         </div>
 
