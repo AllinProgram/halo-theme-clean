@@ -4,7 +4,6 @@
 <head th:replace="~{fragments/head :: head(${singlePage.spec.title + ' | ' + site.title}, ${singlePage.spec.excerpt}, ${singlePage.status.permalink})}"></head>
 
 <body>
-    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
     <main id="main-content" class="main">
@@ -20,7 +19,6 @@
     </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 
