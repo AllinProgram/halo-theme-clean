@@ -20,39 +20,15 @@
         }
     }
 
-    window.toggleTheme = function () {
-        var current = getThemePreference();
-        var next = current === 'dark' ? 'light' : 'dark';
-        localStorage.setItem(THEME_KEY, next);
-        applyTheme(next);
-    };
-
     applyTheme(getThemePreference());
 
-    /* ============================================
-       Back to Top Button
-       ============================================ */
-    window.scrollToTop = function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    var backToTopBtn = document.querySelector('.back-to-top');
-    if (backToTopBtn) {
-        var scrollThreshold = 300;
-        var ticking = false;
-
-        window.addEventListener('scroll', function () {
-            if (!ticking) {
-                window.requestAnimationFrame(function () {
-                    if (window.scrollY > scrollThreshold) {
-                        backToTopBtn.classList.add('visible');
-                    } else {
-                        backToTopBtn.classList.remove('visible');
-                    }
-                    ticking = false;
-                });
-                ticking = true;
-            }
+    var toggleBtn = document.getElementById('theme-toggle-btn');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+            var current = getThemePreference();
+            var next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem(THEME_KEY, next);
+            applyTheme(next);
         });
     }
 

@@ -4,7 +4,6 @@
 <head th:replace="~{fragments/head :: head(${post.spec.title + ' | ' + site.title}, ${post.spec.excerpt}, ${post.status.permalink})}"></head>
 
 <body>
-    <a class="skip-nav" href="#main-content">Skip to content</a>
     <header th:replace="~{fragments/header :: header}"></header>
 
     <main id="main-content" class="main">
@@ -12,9 +11,6 @@
 
         <div class="post-meta">
             <span th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
-            <span th:if="${post.contributor != null}">
-                &middot; <span th:text="${post.contributor.spec.displayName}"></span>
-            </span>
             <th:block th:if="${post.categories != null && !#lists.isEmpty(post.categories)}">
                 &middot;
                 <a th:each="cat : ${post.categories}" th:href="@{${cat.status.permalink}}" th:text="${cat.spec.displayName}"></a>
@@ -35,7 +31,6 @@
     </main>
 
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-    <button class="back-to-top" type="button" aria-label="Back to top" onclick="scrollToTop()">&#8593;</button>
     <script th:src="@{/assets/js/main.js}"></script>
 </body>
 
