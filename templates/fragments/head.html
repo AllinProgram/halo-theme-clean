@@ -14,14 +14,6 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" th:content="${title}" />
     <meta name="twitter:description" th:content="${description}" th:if="${description != null}" />
-    <script>
-        (function() {
-            var THEME_KEY = 'theme-preference';
-            var stored = localStorage.getItem(THEME_KEY);
-            var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" media="all" rel="stylesheet" />
 </head>

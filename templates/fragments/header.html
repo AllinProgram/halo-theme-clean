@@ -15,8 +15,5 @@
         <a th:each="menuItem : ${menuFinder.getPrimary().menuItems}"
            th:text="${menuItem.status.displayName}"
            th:href="@{${menuItem.status.href}}"></a>
-        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" id="theme-toggle-btn">
-            <span class="theme-toggle-icon">&#9790;</span>
-        </button>
     </nav>
 </header>
