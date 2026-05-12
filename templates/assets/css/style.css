@@ -145,6 +145,7 @@ a:focus-visible {
 
 .site-brand {
     cursor: pointer;
+    margin: 15px 0;
 }
 
 .site-brand a {
